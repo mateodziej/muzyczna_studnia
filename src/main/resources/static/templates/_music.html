@@ -17,37 +17,36 @@
                <div class="ms-card" ng-repeat="musicEvent in musicEventsWall | byKeyword: keyword" ng-if="$odd">
                   <!-- zdjecie -->
                   <div>
-                     <img style="width: 100%;" ng-repeat="image in musicEvent.source.images | imgMinWidth:1024 | limitTo:1"
-                        ng-src="{{image.url}}" alt="promo">
+                     <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
                   </div>
                   <!-- dolna czesc -->
                   <div class="ms-card-bottom">
                      <div class="item-title-box">
-                        <span class="item-title">{{musicEvent.source.name}}</span>
+                        <span class="item-title">{{musicEvent.storedEvent.name}}</span>
                      </div>
                      <div class="date-place-box">
                         <!-- Data eventu -->
                         <!-- miejsce -->
-                        <span ng-if="musicEvent.source.dates.start.localDate !== undefined">{{musicEvent.source.dates.start.localDate
-                           | date : "dd.MM.y"}}</span>
+                        <span ng-if="musicEvent.source.dates.start.localDate !== undefined">{{musicEvent.storedEvent.localDate
+                           | date : "dd.MM.y"}} {{musicEvent.storedEvent.localTime}}</span>
                         <span ng-if="musicEvent.source.dates.start.localDate === undefined">Data: nie ogłoszono</span>
-                        <span ng-repeat="venue in musicEvent.source.embedded.venues"><strong>{{venue.name}}</strong>,
-                           {{venue.city.name}}</span>
+                        <span><strong>{{musicEvent.storedEvent.venueName}}</strong>,
+                           {{musicEvent.storedEvent.venueAddress}}, {{musicEvent.storedEvent.venueCity}}</span>
                      </div>
                      <!-- ceny -->
-                     <div ng-repeat="price in musicEvent.source.priceRanges |limitTo:1" class="price-box">
-                        <span>Bilety od {{price.min}} do {{price.max}} {{price.currency}}</span>
+                     <div class="price-box">
+                        <span>Bilety od {{musicEvent.storedEvent.priceMin}} do {{musicEvent.storedEvent.priceMax}} {{musicEvent.storedEvent.currency}}</span>
                      </div>
                      <div>
-                        <span>W sprzedaży od {{musicEvent.source.sales.publicSale.startDateTime | date : "dd.MM.y"}} do
-                           {{musicEvent.source.sales.publicSale.endDateTime | date : "dd.MM.y"}}</span>
+                        <span>W sprzedaży od {{musicEvent.storedEvent.saleStartDate | date : "dd.MM.y"}} do
+                           {{musicEvent.storedEvent.saleEndDate | date : "dd.MM.y"}}</span>
                         <a href="{{musicEvent.source.url}}">kup bilety</a>
                      </div>
                      <!-- przyciski -->
                      <div class="bottom-btns-box">
-                        <button ng-click="addLiked(musicEvent.ticketmasterId)" class="btn btn-primary"><i class="fa fa-thumbs-up"
+                        <button ng-click="addLiked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-primary"><i class="fa fa-thumbs-up"
                               aria-hidden="true"></i></button>
-                        <button ng-click="addDisliked(musicEvent.ticketmasterId)" class="btn btn-light"><i class="fa fa-thumbs-down"
+                        <button ng-click="addDisliked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-light"><i class="fa fa-thumbs-down"
                               aria-hidden="true"></i></button>
                      </div>
                   </div>
