@@ -1,0 +1,29 @@
+
+<div> <!-- Kontroler jest nadawany w routerze -->
+    <h1>wydarzenia</h1>
+    <h2>Wall</h2>
+    <div ng-repeat="otherEvent in otherEventsWall">
+        <span>{{otherEvent.source.name}}</span>
+        <div ng-repeat="venue in otherEvent.source.embedded.venues">
+            <span>{{venue.name}}</span>, <span>{{venue.city.name}}</span>
+        </div>
+        <button ng-click="addLiked($index)">Lubie to</button>
+        <button ng-click="addDisliked($index)">Nie lubie tego</button>
+        <hr/>
+    </div>
+    <button ng-if="otherEventsWallCurrentPageNumber < (otherEventsWallTotalPages - 1)" ng-click="getWallNextPage()">więcej...</button>
+
+    <h2>Liked</h2>
+    <div ng-repeat="likedEvent in otherEventsLiked">
+        <span>{{likedEvent.ticketmasterId}}</span>
+        <button ng-click="addToWallFromLiked($index)">Odlub</button>
+    </div>
+    <button ng-if="otherEventsLikedCurrentPageNumber < (otherEventsLikedTotalPages - 1)" ng-click="getLikedNextPage()">więcej...</button>
+
+    <h2>Disliked</h2>
+    <div ng-repeat="dislikedEvent in otherEventsDisliked">
+        <span>{{dislikedEvent.ticketmasterId}}</span>
+        <button ng-click="addToWallFromDisliked($index)">Odnielub</button>
+    </div>
+    <button ng-if="otherEventsDislikedCurrentPageNumber < (otherEventsDislikedTotalPages - 1)" ng-click="getDislikedNextPage()">więcej...</button>
+</div>

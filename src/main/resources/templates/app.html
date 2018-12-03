@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>App</h1>
+
+<form method="post" action="/logout">
+    <input type="submit" value="wyloguj">
+</form>
+<br />
+
+<input type="text" id="input-text" />
+<br />
+<button id="auth">get auth</button>
+<br />
+<button id="get-artists">Pokaż artystów</button>
+<button id="add-artist">Dodaj artystę</button>
+<button id="delete-artist">Usuń artystę</button>
+<br />
+<button id="get-tags">Pokaż tagi</button>
+<button id="add-tag">Dodaj tag</button>
+<button id="delete-tag">Usuń tag</button>
+<br />
+<input type="text" id="last-fm-id" placeholder="last fm id" />
+<input type="text" id="city" placeholder="miasto" />
+<br />
+<button id="update-user">Aktualizuj użytkownika</button>
+<button id="get-user">Poka użytkownika</button>
+<br />
+<button id="search-music">Szukaj</button>
+<button id="search-other">Szukaj od nowa</button>
+<br />
+<button id="get-music">Eventy muzyczne</button>
+<button id="get-other">Eventy inne</button>
+<br />
+<h6>Polub event po ticketmasterId</h6>
+<input type="text" id="ticket-liked" />
+<br />
+<button id="add-liked">Polub event</button>
+<br />
+<h6>Wyświetl polubione eventy muzyczne</h6>
+<button id="get-liked-music">Polubione eventy muzyczne</button>
+<script>
+    var username;
+
+    $(document).ready(function () {
+        $.get("/api/auth", function(data, status){
+            console.log(data.name);
+            username = data.name;
+        });
+    });
+
+    $("#auth").click(function(){
+        $.get("/api/auth", function(data, status){
+            console.log(data);
+            username = data.name;
+        });
+    });
+
+    $("#add-artist").click(function(){
+        let artist = $("#input-text").val();
+        console.log("addArtist url " + "/api/artists/" + artist);
+        $.post("/api/artists/" + artist, function(data){
+            console.log(data);
+        });
+    });
+
+    $("#delete-artist").click(function(){
+        let artist = $("#input-text").val();
+        $.ajax({
+            url: "/api/artists/" + artist,
+            type: 'DELETE',
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    });
+
+    $("#get-artists").click(function(){
+        $.get("/api/artists/", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#add-tag").click(function(){
+        let tag = $("#input-text").val();
+        $.post("/api/tags/" + tag, function(data){
+            console.log(data);
+        });
+    });
+
+    $("#delete-tag").click(function(){
+        let tag = $("#input-text").val();
+        $.ajax({
+            url: "/api/tags/" + tag,
+            type: 'DELETE',
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    });
+
+    $("#get-tags").click(function(){
+        $.get("/api/tags/", function(data){
+            console.log(data);
+        });
+    });
+
+    //uzytkownik
+
+    $("#update-user").click(function(){
+        var ob = {
+            lastFmUsername: $("#last-fm-id").val(),
+            city: $("#city").val()
+        };
+        $.ajax({
+            url : "/api/users",
+            method : "put",
+            contentType : "application/json",
+            data : JSON.stringify(ob)
+        })
+            .done(response => { //funkcje srzałkowe jak najbardziej na propsie
+            console.log(response);
+    })
+    .fail(() => {
+            alert("Wystąpił błąd w połączeniu");
+    })
+    .always(() => {
+            $('.loading').hide();
+    });
+    });
+
+    $("#get-user").click(function(){
+        $.get("/api/users", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#search-music").click(function(){
+        $.get("/api/search", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#search-other").click(function(){
+        $.get("/api/search/new", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#get-music").click(function(){
+        $.get("/api/events/music/wall?size=10", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#get-other").click(function(){
+        $.get("/api/events/other/wall?size=5", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#add-liked").click(function(){
+        $.ajax({
+            url : "/api/events/liked/" + $("#ticket-liked").val(),
+            method : "put",
+            contentType : "application/json"
+        })
+            .done(response => { //funkcje srzałkowe jak najbardziej na propsie
+            console.log(response);
+    })
+    .fail(() => {
+            alert("Wystąpił błąd w połączeniu");
+    })
+    .always(() => {
+            $('.loading').hide();
+    });
+    });
+
+    $("#get-liked-music").click(function(){
+        $.get("/api/events/music/liked", function(data){
+            console.log(data);
+        });
+    });
+</script>
+</body>
+</html>

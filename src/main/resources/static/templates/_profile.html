@@ -1,0 +1,51 @@
+<div>
+    <!-- Kontroler jest nadawany w routerze -->
+    <h1>Profil</h1>
+    <div ng-show="user">
+        <div class="user-profile">
+            <img ng-src="{{auth.userAuthentication.details.picture}}" alt="profile photo">
+            <h1>{{auth.userAuthentication.details.name}}</h1>
+        </div>
+        <div id="city-edit-box">
+            <button id="city-edit-btn" ng-click="openCityModal()" class="btn btn-primary">Miasto: {{user.city}} <i
+                    class="fa fa-pencil" aria-hidden="true"></i></button>
+            <div id="city-modal">
+                <input type="text" class="form-control display-inline form-control-sm" placeholder="Miasto..." ng-model="updateCityName"
+                    on-enter="updateCity()" />
+                <button class="btn btn-primary btn-sm" ng-click="updateCity()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button class="btn btn-light btn-sm" ng-click="closeCityModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
+
+        </div>
+        <div id="lastfm-edit-box">
+            <button id="lastfm-edit-btn" ng-click="openLastfmModal()" class="btn btn-primary">Last Fm:
+                {{user.lastFmUsername}} <i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <div id="lastfm-modal">
+                <input type="text" class="form-control display-inline form-control-sm" placeholder="Last Fm..."
+                    ng-model="updateLastFmName" on-enter="updateLastFm()" />
+                <button class="btn btn-primary btn-sm" ng-click="updateLastFm()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button class="btn btn-light btn-sm" ng-click="closeLastfmModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <h3>Artyści</h3>
+        <div ng-repeat="artist in artists">
+            <span>{{artist.name}}</span>
+            <button ng-click="removeArtist($index)">usuń</button>
+        </div>
+        <input type="text" ng-model="addArtistName" />
+        <button ng-click="addArtist()">Dodaj artystę</button>
+    </div>
+    <div>
+        <h3>Tagi</h3>
+        <div ng-repeat="tag in tags">
+            <span>{{tag.name}}</span>
+            <button ng-click="removeTag($index)">usuń</button>
+        </div>
+
+        <input type="text" ng-model="addTagName" />
+        <button ng-click="addTag()">Dodaj tag</button>
+    </div>
+</div>
