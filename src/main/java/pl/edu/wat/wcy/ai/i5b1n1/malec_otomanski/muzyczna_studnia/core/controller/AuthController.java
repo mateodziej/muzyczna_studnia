@@ -15,5 +15,6 @@ public class AuthController {
         auth = (OAuth2Authentication) principal;
         System.out.println("Principal " + auth.getUserAuthentication().getDetails().getClass().getName());
         return principal;
+
     }
 }

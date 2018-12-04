@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEvent;
+import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEventProjection;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.service.EventManagementService;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.util.EventStatusConventer;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.util.EventTypeConventer;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
@@ -31,6 +33,13 @@ public class EventManagementController {
                                     @PathVariable UserEvent.Status status,
                                     Pageable pageRequest) {
         return eventManagementService.getEventsByUser(principal.getName(), type, status, pageRequest);
+    }
+
+    @GetMapping("/popular/{type}/{status}")
+    @Transactional
+    public List<UserEventProjection> getPopularEvents(@PathVariable UserEvent.Type type,
+                                                      @PathVariable UserEvent.Status status) {
+        return eventManagementService.getPopularEvents(type, status);
     }
 
     @PutMapping("/{status}/{ticketmasterId}")

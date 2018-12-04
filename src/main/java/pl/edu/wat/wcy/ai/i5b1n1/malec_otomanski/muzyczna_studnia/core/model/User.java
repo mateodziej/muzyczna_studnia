@@ -30,6 +30,8 @@ public class User {
     @NotNull
     private String lastFmUsername = "";
 
+    private String email;
+
     @Builder.Default
     @NotNull
     private String city = "Warszawa";

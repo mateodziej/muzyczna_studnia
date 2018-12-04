@@ -47,6 +47,7 @@
 <br />
 <h6>Wyświetl polubione eventy muzyczne</h6>
 <button id="get-liked-music">Polubione eventy muzyczne</button>
+<button id="get-pop-liked-music">Popularne polubione eventy muzyczne</button>
 <script>
     var username;
 
@@ -157,6 +158,12 @@
 
     $("#get-music").click(function(){
         $.get("/api/events/music/wall?size=10", function(data){
+            console.log(data);
+        });
+    });
+
+    $("#get-pop-liked-music").click(function(){
+        $.get("/api/events/popular/music/liked?size=10", function(data){
             console.log(data);
         });
     });

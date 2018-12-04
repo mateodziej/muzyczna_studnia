@@ -9,12 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.StoredEvent;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.User;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEvent;
+import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEventProjection;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.repository.EventRepository;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.repository.UserEventRepository;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EventManagementService {
@@ -70,5 +73,12 @@ public class EventManagementService {
                 type,
                 status,
                 pageable);
+    }
+
+    public List<UserEventProjection> getPopularEvents(UserEvent.Type type, UserEvent.Status status) {
+        return userEventRepository.getMostPopularOf(type, status)
+                .stream()
+                .limit(10)
+                .collect(Collectors.toList());
     }
 }

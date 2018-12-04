@@ -139,7 +139,7 @@
         var addDisliked = function(ticketmasterId){
             let index = -1;
             for(i=0; i<$rootScope.musicEventsWall.length; i++){
-                if($rootScope.musicEventsWall[i].ticketmasterId === ticketmasterId){
+                if($rootScope.musicEventsWall[i].storedEvent.ticketmasterId === ticketmasterId){
                     index = i;
                     break;
                 }
@@ -148,7 +148,7 @@
             let items = $rootScope.musicEventsWall.splice(index, 1);
             $rootScope.musicEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/disliked/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers : {
@@ -169,7 +169,7 @@
             let items = $rootScope.musicEventsDisliked.splice(index, 1);
             $rootScope.musicEventsWall.push(items[0]);
             console.log("wall item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/wall/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers : {
@@ -190,7 +190,7 @@
             let items = $rootScope.musicEventsLiked.splice(index, 1);
             $rootScope.musicEventsWall.push(items[0]);
             console.log("wall item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/wall/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers : {

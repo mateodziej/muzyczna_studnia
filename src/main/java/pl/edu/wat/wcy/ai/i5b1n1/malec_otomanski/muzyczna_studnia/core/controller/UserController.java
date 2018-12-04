@@ -3,6 +3,7 @@ package pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.controlle
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.User;
+import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserDto;
 import pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.service.UserService;
 
 import java.security.Principal;
@@ -24,13 +25,13 @@ public class UserController {
         return userService.getUser(principal.getName());
     }
 
-    @PostMapping("/{username}")
-    public void add(@PathVariable String username){
-        userService.add(username);
+    @PostMapping
+    public void add(Principal principal){
+        userService.add(principal.getName());
     }
 
-    @PutMapping("/{username}/city/{cityName}")
-    public void updateCity(@PathVariable String username, @PathVariable String cityName){
-        userService.add(username);
+    @PutMapping
+    public void update(Principal principal, @RequestBody UserDto userDto){
+        userService.update(principal.getName(), userDto);
     }
 }
