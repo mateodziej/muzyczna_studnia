@@ -20,6 +20,7 @@
     <!-- Pacifico font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,500,500i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -57,11 +58,16 @@
             </div>
         </div>
     </div>
-
-    <div class="container-wrapper">
-        <div class="container" id="app-container">
-            <div ng-view></div>
-        </div>
+<!-- zacznij -->
+    <div class="continue-box">
+        <button id="continue-btn">
+            <span>zacznij</span>
+            <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+        </button>
+    </div>
+<!-- treść -->
+    <div class="container-wrapper" id="main-content">
+        <div id="app-container" ng-view></div>
     </div>
 
 </body>

@@ -16,11 +16,6 @@ public class GlobalControllerAdvice {
         response.sendError(HttpStatus.NOT_FOUND.value(), e.getMessage());
     }
 
-//    @ExceptionHandler(EntityAlreadyExistsException.class)
-//    public void entityExistsHandler(HttpServletResponse response, EntityAlreadyExistsException e) throws IOException {
-//        response.sendError(HttpStatus.CONFLICT.value(), e.getMessage());
-//    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     void illegalArgumentHandler(HttpServletResponse response, Exception e) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());

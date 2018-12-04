@@ -27,6 +27,7 @@ public class EventMapper {
                 .venueName(event.getEmbedded().getVenues().get(0).getName())
                 .venueCity(event.getEmbedded().getVenues().get(0).getCity().getName())
                 .venueAddress(event.getEmbedded().getVenues().get(0).getAddress().getLine1())
+                .url(event.getUrl())
                 .build();
     }
 

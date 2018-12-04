@@ -33,6 +33,8 @@ public class StoredEvent {
 
     private String statusCode;
 
+    private String url;
+
     private String venueName;
 
     private String venueCity;

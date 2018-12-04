@@ -9,6 +9,16 @@
         });
 
         updateHeader();
+
+        $("#continue-btn").click(function() {
+            $('html, body').animate({
+                scrollTop: $("#main-content").offset().top - 66
+            }, 800);
+        });
+
+        $(window).bind("mousewheel", function() {
+            $("html, body").stop(true, false);
+        });
     });
 
     var updateHeader = function () {
