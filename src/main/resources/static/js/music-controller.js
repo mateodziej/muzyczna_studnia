@@ -37,7 +37,15 @@
             
                 $http.get(dislikedUrl)
                 .then(onDislikedSuccess);
+
+                let topUrl = "http://localhost:8080/api/events/popular/music/liked"
+
+                $http.get(topUrl)
+                .then(onTopSuccess);
+
                 $rootScope.musicFirstStart = false;
+
+
             }
 
             $rootScope.musicDirty = false;
@@ -61,6 +69,10 @@
             $rootScope.musicEventsDisliked = $rootScope.musicEventsDisliked.concat(response.data.content);
             $rootScope.musicEventsDislikedCurrentPageNumber = response.data.number;
             $rootScope.musicEventsDislikedTotalPages = response.data.totalPages;
+        }
+
+        var onTopSuccess = function(response){
+            $rootScope.musicEventsTop = response.data;
         }
 
         //getEventsOnStart();

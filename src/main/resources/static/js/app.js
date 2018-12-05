@@ -108,6 +108,7 @@
         $rootScope.musicEventsWall = [];
         $rootScope.musicEventsLiked = [];
         $rootScope.musicEventsDisliked = [];
+        $rootScope.musicEventsTop = [];
 
         $rootScope.otherEventsWallCurrentPageNumber = 0;
         $rootScope.otherEventsWallTotalPages = 0;

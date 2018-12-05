@@ -4,10 +4,107 @@
          <span>Znalezione.</span>
       </div>
 </div>
-<div class="full-back">
+<div class="section-title-box" ng-if="musicEventsWall.length === 0 && musicEventsLiked.length === 0 && musicEventsDisliked.length === 0">
+      <div class="container section-title">
+         <img src="../images/liked2.jpg" />
+         <span>Topka.</span>
+      </div>
+</div>
+<div class="full-back" ng-if="musicEventsWall.length === 0 && musicEventsLiked.length === 0 && musicEventsDisliked.length === 0">
 <div class="container vp-60">
-   <div ng-if="musicEventsWall.length === 0 && musicEventsLiked.length === 0 && musicEventsDisliked.length === 0" class="jumbotron">
+   <div>
+      <!-- topka -->
+      <div class="row">
+            <div class="ms-content">
+               <div class="ms-cards-row">
+                  <div class="ms-cards-col">
+                     <div class="ms-section-title-card"><span>#topka</span></div>
+                     <div class="ms-card" ng-repeat="musicEvent in musicEventsTop" ng-if="$odd">
+                        <!-- zdjecie -->
+                        <div>
+                           <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
+                        </div>
+                        <!-- dolna czesc -->
+                        <div class="ms-card-bottom">
+                           <div class="item-title-box">
+                              <span class="item-title">{{musicEvent.storedEvent.name}}</span>
+                           </div>
+                           <div class="date-place-box">
+                              <!-- Data eventu -->
+                              <!-- miejsce -->
+                              <span ng-if="musicEvent.storedEvent.localDate !== undefined">{{musicEvent.storedEvent.localDate
+                                 | date : "dd.MM.y"}} {{musicEvent.storedEvent.localTime}}</span>
+                              <span ng-if="musicEvent.storedEvent.localDate === undefined">Data: nie ogłoszono</span>
+                              <span><strong>{{musicEvent.storedEvent.venueName}}</strong>,
+                                 {{musicEvent.storedEvent.venueAddress}}, {{musicEvent.storedEvent.venueCity}}</span>
+                           </div>
+                           <!-- ceny -->
+                           <div class="price-box">
+                              <span>Bilety od {{musicEvent.storedEvent.priceMin}} do {{musicEvent.storedEvent.priceMax}} {{musicEvent.storedEvent.currency}}</span>
+                           </div>
+                           <div>
+                              <span>W sprzedaży od {{musicEvent.storedEvent.saleStartDate | date : "dd.MM.y"}} do
+                                 {{musicEvent.storedEvent.saleEndDate | date : "dd.MM.y"}}</span>
+                              <a href="{{musicEvent.storedEvent.url}}" target="_blank">kup bilety</a>
+                           </div>
+                           <!-- przyciski -->
+                           <div class="bottom-btns-box">
+                              <button ng-click="addLiked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-primary"><i class="fa fa-thumbs-up"
+                                    aria-hidden="true"></i></button>
+                              <button ng-click="addDisliked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-light"><i class="fa fa-thumbs-down"
+                                    aria-hidden="true"></i></button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ms-cards-col">
+                     <div class="ms-card" ng-repeat="musicEvent in musicEventsTop" ng-if="$even">
+                        <!-- zdjecie -->
+                        <div>
+                           <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
+                        </div>
+                        <!-- dolna czesc -->
+                        <div class="ms-card-bottom">
+                           <div class="item-title-box">
+                              <span class="item-title">{{musicEvent.storedEvent.name}}</span>
+                           </div>
+                           <div class="date-place-box">
+                              <!-- Data eventu -->
+                              <!-- miejsce -->
+                              <span ng-if="musicEvent.storedEvent.localDate !== undefined">{{musicEvent.storedEvent.localDate
+                                 | date : "dd.MM.y"}} {{musicEvent.storedEvent.localTime}}</span>
+                              <span ng-if="musicEvent.storedEvent.localDate === undefined">Data: nie ogłoszono</span>
+                              <span><strong>{{musicEvent.storedEvent.venueName}}</strong>,
+                                 {{musicEvent.storedEvent.venueAddress}}, {{musicEvent.storedEvent.venueCity}}</span>
+                           </div>
+                           <!-- ceny -->
+                           <div class="price-box">
+                              <span>Bilety od {{musicEvent.storedEvent.priceMin}} do {{musicEvent.storedEvent.priceMax}} {{musicEvent.storedEvent.currency}}</span>
+                           </div>
+                           <div>
+                              <span>W sprzedaży od {{musicEvent.storedEvent.saleStartDate | date : "dd.MM.y"}} do
+                                 {{musicEvent.storedEvent.saleEndDate | date : "dd.MM.y"}}</span>
+                              <a href="{{musicEvent.storedEvent.url}}" target="_blank">kup bilety</a>
+                           </div>
+                           <!-- przyciski -->
+                           <div class="bottom-btns-box">
+                              <button ng-click="addLiked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-primary"><i class="fa fa-thumbs-up"
+                                    aria-hidden="true"></i></button>
+                              <button ng-click="addDisliked(musicEvent.storedEvent.ticketmasterId)" class="btn btn-light"><i class="fa fa-thumbs-down"
+                                    aria-hidden="true"></i></button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
    </div>
+</div>
+</div>
+      <!-- !topka -->
+      <div class="full-back" ng-if="musicEventsWall.length > 0">
+      <div class="container vp-60">
    <div class="row">
       <div ng-repeat="keyword in (musicEventsWall | retUniqKeywords)" class="ms-content">
          <div class="ms-cards-row">
@@ -207,3 +304,17 @@
       </div>
    </div>
    </div>
+
+   <div class="fixed-action-btn">
+         <a class="btn-floating btn-large red">
+           <i class="large material-icons">mode_edit</i>
+         </a>
+         <ul>
+           <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+           <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+           <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+           <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+         </ul>
+   </div>
+
+   <script src="../js/fab.js"></script>
