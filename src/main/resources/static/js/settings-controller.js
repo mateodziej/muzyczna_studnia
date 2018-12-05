@@ -279,7 +279,7 @@
     var placeMarker = function(location) {
         var marker = new google.maps.Marker({
           position: location,
-          map: $rootScope.map
+          map: $scope.map
         });
         $scope.map.setZoom(10);
         $scope.map.setCenter(marker.getPosition());
