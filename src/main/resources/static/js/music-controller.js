@@ -142,6 +142,31 @@
             .then(onAddLikedSuccess);
         }
 
+        var addLikedTop = function(ticketmasterId){
+            console.log("addLikedTop start tmId " + ticketmasterId);
+            let index = -1;
+            for(i=0; i<$rootScope.musicEventsTop.length; i++){
+                if($rootScope.musicEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            console.log("addLiked index val " + index);
+            if(index === -1) return;
+            let items = $rootScope.musicEventsTop.splice(index, 1);
+            $rootScope.musicEventsLiked.push(items[0]);
+            console.log("liked item " + JSON.stringify(items[0]));
+            let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
+            var data = "";
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            }
+            $http.put(url, data, config)
+            .then(onAddLikedSuccess);
+        }
+
         var onAddLikedSuccess = function(){
             console.log("muzyka - polubiono event");
         }
@@ -158,6 +183,29 @@
             }
             if(index === -1) return;
             let items = $rootScope.musicEventsWall.splice(index, 1);
+            $rootScope.musicEventsDisliked.push(items[0]);
+            console.log("disliked item " + JSON.stringify(items[0]));
+            let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
+            var data = "";
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            }
+            $http.put(url, data, config)
+            .then(onAddDislikedSuccess);
+        }
+
+        var addDislikedTop = function(ticketmasterId){
+            let index = -1;
+            for(i=0; i<$rootScope.musicEventsTop.length; i++){
+                if($rootScope.musicEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            if(index === -1) return;
+            let items = $rootScope.musicEventsTop.splice(index, 1);
             $rootScope.musicEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
@@ -218,6 +266,9 @@
         }
 
         $scope.addToWallFromLiked = addToWallFromLiked;
+
+        $scope.addLikedTop = addLikedTop;
+        $scope.addDislikedTop = addDislikedTop;
 
     };
 

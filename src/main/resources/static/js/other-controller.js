@@ -37,10 +37,20 @@
             
                 $http.get(dislikedUrl)
                 .then(onDislikedSuccess);
+
+                let topUrl = "http://localhost:8080/api/events/popular/other/liked"
+
+                $http.get(topUrl)
+                .then(onTopSuccess);
+
                 $rootScope.otherFirstStart = false;
             }
 
             $rootScope.otherDirty = false;
+        }
+
+        var onTopSuccess = function(response){
+            $rootScope.otherEventsTop = response.data;
         }
 
         var onWallSuccess = function(response){
@@ -50,6 +60,8 @@
         }
 
         var onLikedSuccess = function(response){
+            console.log("other liked response");
+            console.log(response.data);
             $rootScope.otherEventsLiked = $rootScope.otherEventsLiked.concat(response.data.content);
             $rootScope.otherEventsLikedCurrentPageNumber = response.data.number;
             $rootScope.otherEventsLikedTotalPages = response.data.totalPages;
@@ -103,11 +115,21 @@
 
         $scope.getDislikedNextPage = getDislikedNextPage;
 
-        var addLiked = function(index){
+        var addLiked = function(ticketmasterId){
+            console.log("addLiked start tmId " + ticketmasterId);
+            let index = -1;
+            for(i=0; i<$rootScope.otherEventsWall.length; i++){
+                if($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            console.log("addLiked index val " + index);
+            if(index === -1) return;
             let items = $rootScope.otherEventsWall.splice(index, 1);
             $rootScope.otherEventsLiked.push(items[0]);
             console.log("liked item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/liked/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers : {
@@ -118,17 +140,73 @@
             .then(onAddLikedSuccess);
         }
 
+        var addLikedTop = function(ticketmasterId){
+            console.log("addLikedTop start tmId " + ticketmasterId);
+            let index = -1;
+            for(i=0; i<$rootScope.otherEventsTop.length; i++){
+                if($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            console.log("addLiked index val " + index);
+            if(index === -1) return;
+            let items = $rootScope.otherEventsTop.splice(index, 1);
+            $rootScope.otherEventsLiked.push(items[0]);
+            console.log("liked item " + JSON.stringify(items[0]));
+            let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
+            var data = "";
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            }
+            $http.put(url, data, config)
+            .then(onAddLikedSuccess);
+        }
+
+        var addDislikedTop = function(ticketmasterId){
+            let index = -1;
+            for(i=0; i<$rootScope.otherEventsTop.length; i++){
+                if($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            if(index === -1) return;
+            let items = $rootScope.otherEventsTop.splice(index, 1);
+            $rootScope.otherEventsDisliked.push(items[0]);
+            console.log("disliked item " + JSON.stringify(items[0]));
+            let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
+            var data = "";
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            }
+            $http.put(url, data, config)
+            .then(onAddDislikedSuccess);
+        }
+
         var onAddLikedSuccess = function(){
             console.log("wydarzenia - polubiono event");
         }
 
         $scope.addLiked = addLiked;
 
-        var addDisliked = function(index){
+        var addDisliked = function(ticketmasterId){
+            let index = -1;
+            for(i=0; i<$rootScope.otherEventsWall.length; i++){
+                if($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId){
+                    index = i;
+                    break;
+                }
+            }
+            if(index === -1) return;
             let items = $rootScope.otherEventsWall.splice(index, 1);
             $rootScope.otherEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/disliked/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers : {
@@ -186,6 +264,9 @@
         }
 
         $scope.addToWallFromLiked = addToWallFromLiked;
+
+        $scope.addLikedTop = addLikedTop;
+        $scope.addDislikedTop = addDislikedTop;
 
     };
 

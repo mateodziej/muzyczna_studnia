@@ -109,9 +109,16 @@
         $rootScope.musicEventsLiked = [];
         $rootScope.musicEventsDisliked = [];
         $rootScope.musicEventsTop = [];
+        $rootScope.otherEventsTop = [];
 
         $rootScope.otherEventsWallCurrentPageNumber = 0;
         $rootScope.otherEventsWallTotalPages = 0;
+
+        $rootScope.otherEventsLikedCurrentPageNumber = 0;
+        $rootScope.otherEventsLikedTotalPages = 0;
+
+        $rootScope.otherEventsDislikedCurrentPageNumber = 0;
+        $rootScope.otherEventsDislikedTotalPages = 0;
 
         $rootScope.otherEventsWall = [];
         $rootScope.otherEventsLiked = [];
@@ -137,6 +144,7 @@
         $rootScope.search = search;
         $rootScope.searchNew = searchNew;
         $rootScope.musicFirstStart = true;
+        $rootScope.otherFirstStart = true;
 
         search();
         getAuth();
