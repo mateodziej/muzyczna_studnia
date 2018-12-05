@@ -1,4 +1,4 @@
-<div class="section-title-box" ng-if="musicEventsWall.length > 0">
+<div class="section-title-box" ng-if="musicEventsWall.length > 0" id="go-to-wall">
       <div class="container section-title">
          <img src="../images/liked2.jpg" />
          <span>Znalezione.</span>
@@ -198,7 +198,7 @@
 </div>
 </div>
 <!-- Polubione -->
-<div class="section-title-box" ng-if="musicEventsLiked.length > 0">
+<div class="section-title-box" ng-if="musicEventsLiked.length > 0" id="go-to-liked">
    <div class="container section-title">
       <img src="../images/liked2.jpg" />
       <span>Polubione.</span>
@@ -252,7 +252,7 @@
 </div>
 
 <!-- Odlubione -->
-<div class="section-title-box" ng-if="musicEventsDisliked.length > 0">
+<div class="section-title-box" ng-if="musicEventsDisliked.length > 0" id="go-to-disliked">
       <div class="container section-title">
          <img src="../images/liked2.jpg" />
          <span>Nie lubię.</span>
@@ -305,16 +305,10 @@
    </div>
    </div>
 
-   <div class="fixed-action-btn">
-         <a class="btn-floating btn-large red">
-           <i class="large material-icons">mode_edit</i>
-         </a>
-         <ul>
-           <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-           <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-           <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-           <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-         </ul>
+   <div class="btns-fixed">
+         <a id="wall-f-btn" ng-if="musicEventsWall.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">apps</i></a>
+         <a id="liked-f-btn" ng-if="musicEventsLiked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_up</i></a>
+         <a id="disliked-f-btn" ng-if="musicEventsDisliked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_down</i></a>
    </div>
 
-   <script src="../js/fab.js"></script>
+   <script src="../js/fixed-btns.js"></script>

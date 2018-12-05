@@ -459,3 +459,19 @@ body {
     margin-top: 20px;
 }
 
+.btns-fixed{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    transition: 0.2s ease-out;
+    opacity: 1;
+}
+
+.btns-hide{
+    visibility: hidden;
+    opacity: 0;
+    bottom: -100px;
+}
+
