@@ -374,13 +374,8 @@
     
         };
 
-        if($rootScope.map === undefined){
-            $rootScope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        }
-
-        $scope.map = $rootScope.map;
-
-        $scope.map.setOptions(mapProp);
+        
+            $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
         
     }
