@@ -334,11 +334,16 @@ body {
     #city-edit-box,
     #lastfm-edit-box {
         position: relative !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
     #city-edit-btn,
-    #lastfm-edit-btn {
+    #lastfm-edit-btn,
+    #find-me {
         min-width: 255px;
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
     #city-modal,
     #lastfm-modal {
@@ -350,6 +355,7 @@ body {
         border-radius: 5px;
         align-items: center;
         justify-content: center;
+        top: 38px;
     }
     .display-inline {
         display: inline-block !important;
@@ -411,10 +417,45 @@ body {
         width: 40%;
         padding-left: 15px;
         padding-right: 15px;
+
+        .tag-box{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            
+
+            > span{
+                font-family: 'Gloria Hallelujah', cursive;
+                font-size: 30px;
+                font-weight: 900;
+            }
+            
+
+            .tag{
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                padding: 5px;
+                font-weight: 700;
+                font-size: 24px;
+
+                button{
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
     .right-side{
         width: 60%;
     }
+}
+
+.mt-20{
+    margin-top: 20px;
 }
 

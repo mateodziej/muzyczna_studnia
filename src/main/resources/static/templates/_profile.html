@@ -10,8 +10,10 @@
         <div class="left-side">
                 <div class="vp-60">
                         <div id="city-edit-box">
-                                <button id="city-edit-btn" ng-click="openCityModal()" class="btn btn-primary">Miasto: {{user.city}} <i
-                                        class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button id="city-edit-btn" ng-click="openCityModal()" class="btn btn-primary">
+                                    Miasto: {{user.city}} 
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
                                 <div id="city-modal">
                                     <input type="text" class="form-control display-inline form-control-sm" placeholder="Miasto..." id="new-city-name" ng-model="updateCityName"
                                         on-enter="updateCity()" />
@@ -32,42 +34,37 @@
                                 </div>
                     
                         </div>
-            
+                        <div class="tag-box">
+                            <span>Artyści</span>
+                            <input class="input-field" type="text" on-enter="addArtist()" ng-model="addArtistName" />
+                            
+                        </div>
+                        <div class="tag-box">
+                                <div class="tag" ng-repeat="artist in artists">
+                                        <span>#{{artist.name}}</span>
+                                        <button ng-click="removeArtist($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </div>
+                        </div>
+                        <div class="tag-box mt-20">
+                                <span>Tagi</span>
+                                <input class="input-field" type="text" on-enter="addTag()" ng-model="addTagName" />
+                                
+                            </div>
+                            <div class="tag-box">
+                                    <div class="tag" ng-repeat="tag in tags">
+                                            <span>#{{tag.name}}</span>
+                                            <button ng-click="removeTag($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                            </div>
             
                 </div>
         </div>
         <div class="right-side">
-                <div id="googleMap" style="width:100%;height:400px;"></div>
+            <div id="googleMap" style="width:100%;height:100%;"></div>
         </div>
     </div>
     
 </div>
-
-<div>
-    <div ng-show="user">
-        
-    </div>
-    <div>
-        <h3>Artyści</h3>
-        <div ng-repeat="artist in artists">
-            <span>{{artist.name}}</span>
-            <button ng-click="removeArtist($index)">usuń</button>
-        </div>
-        <input type="text" ng-model="addArtistName" />
-        <button ng-click="addArtist()">Dodaj artystę</button>
-    </div>
-    <div>
-        <h3>Tagi</h3>
-        <div ng-repeat="tag in tags">
-            <span>{{tag.name}}</span>
-            <button ng-click="removeTag($index)">usuń</button>
-        </div>
-
-        <input type="text" ng-model="addTagName" />
-        <button ng-click="addTag()">Dodaj tag</button>
-    </div>
-</div>
-
 
 <script src="../js/map.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLWO0uDdpI3GSAU_Mcgv1-lfryloiZaiE&callback=mapInitializer"></script>
