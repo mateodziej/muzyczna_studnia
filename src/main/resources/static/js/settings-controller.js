@@ -216,6 +216,77 @@
         closeCityModal();
         closeLastfmModal();
 
+    var getCities = function(){
+        $.getJSON("/js/cities.json", function(data){
+            $scope.cities = data;
+           
+        });
+    }
+
+    getCities();
+
+    var getLocation = function() {
+        
+        //navigator.geolocation.clearWatch(getPosition);
+        if (navigator.geolocation) {
+            
+            navigator.geolocation.getCurrentPosition(getPosition);
+            
+        } else { 
+            
+        }
+    }
+        
+    var getPosition = function(position) {
+        
+        let myLat = position.coords.latitude; 
+        let myLng = position.coords.longitude;
+        var myLatLng = {lat: myLat, lng: myLng};
+        let city = findCity(myLatLng);
+        
+        $scope.$apply(function(){
+            $scope.updateCityName = city.name;
+        });
+        openCityModal();
+        var cityLatLng = {lat: Number(city.lat), lng: Number(city.lng)};
+        placeMarker(cityLatLng);
+    }
+
+    var findCity = function(latLng){
+        let selectedCity = $scope.cities[0];
+        let distSqr = ((latLng.lat - $scope.cities[0].lat )**2) + ((latLng.lng - $scope.cities[0].lng )**2);
+        let minDistance = Math.sqrt(Math.abs(distSqr));
+
+        for(index = 1; index < $scope.cities.length; index++){
+            let city = $scope.cities[index];
+            
+            let cityLat = Number(city.lat);
+            let cityLng = Number(city.lng);
+            
+            let distSquared = ((latLng.lat - cityLat )**2) + ((latLng.lng - cityLng )**2);
+            
+            let distance = Math.sqrt( Math.abs(distSquared));
+            
+            if(distance < minDistance){
+                minDistance = distance;
+                selectedCity = city;
+            }
+            
+        }
+        return selectedCity;
+    }
+
+    var placeMarker = function(location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: $scope.map
+        });
+        $scope.map.setZoom(10);
+        $scope.map.setCenter(marker.getPosition());
+    }
+
+    $scope.findMe = getLocation;
+
     };
 
     app.controller("SettingsController", SettingsController);

@@ -404,3 +404,17 @@ body {
     }
 }
 
+.profile-flex-con{
+    display: flex;
+    flex-direction: row;
+    .left-side{
+        width: 40%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .right-side{
+        width: 60%;
+    }
+}
+
