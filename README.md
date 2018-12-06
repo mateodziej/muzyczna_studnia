@@ -40,9 +40,9 @@ Back-end:
 https://packagecloud.io/mateodziej/muzyczna-studnia
 ```
 
-2. Pobrany plik muzyczna_studnia-{wersja}.jar uruchamiamy w terminalu poleceniem:
+2. Pobrany plik muzyczna_studnia-{wersja}-spring-boot.jar uruchamiamy w terminalu poleceniem:
 ```sh
-java -jar muzyczna_studnia-{wersja}.jar
+java -jar muzyczna_studnia-{wersja}-spring-boot.jar
 ```
 
 > Do poprawnego działania wymagane jest środowisko Java SE 1.8 -> https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
