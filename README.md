@@ -1,4 +1,7 @@
 ![logo](https://github.com/mateodziej/muzyczna_studnia/blob/master/src/main/resources/static/images/logo-dark.png =80x80)
+
+<img src="https://github.com/mateodziej/muzyczna_studnia/blob/master/src/main/resources/static/images/logo-dark.png" data-canonical-src="https://github.com/mateodziej/muzyczna_studnia/blob/master/src/main/resources/static/images/logo-dark.png" width="200" height="400" />
+
 # Muzyczna Studnia
 [![Build Status](https://travis-ci.org/mateodziej/muzyczna_studnia.svg?branch=1.6.8)](https://travis-ci.org/mateodziej/muzyczna_studnia)
 
