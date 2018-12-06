@@ -1,5 +1,4 @@
-# ![logo](src/main/resources/static/images/logo-dark.png =80x80) Muzyczna Studnia
-[![Build Status](https://travis-ci.org/mateodziej/muzyczna_studnia.svg?branch=1.6.8)](https://travis-ci.org/mateodziej/muzyczna_studnia)
+# <img align="left" src="https://github.com/mateodziej/muzyczna_studnia/blob/master/src/main/resources/static/images/logo-dark.png" data-canonical-src="https://github.com/mateodziej/muzyczna_studnia/blob/master/src/main/resources/static/images/logo-dark.png" width="60" height="60" /> Muzyczna Studnia [![Build Status](https://travis-ci.org/mateodziej/muzyczna_studnia.svg?branch=1.6.8)](https://travis-ci.org/mateodziej/muzyczna_studnia)
 
 Aplikacja podpowiadająca nadchodzące wydarzenia muzyczne z naszej okolicy na
 podstawie ostatnio słuchanych przez nas zespołów, oraz inne wydarzenia zdefiniowane
