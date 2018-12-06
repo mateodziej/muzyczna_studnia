@@ -55,12 +55,12 @@ Opis modułów graficznego interfejsu użytkownika aplikacji internetowej
 
 > W zakładce "MUZYKA" wyświetlane są wszystkie znalezione eventy muzyczne dla danego
 > miasta, na podstawie ostatnio słuchanych przez użytkownika artystów na portalu 
-> last.fm oraz zdefiniowanych przez niego wykonawców.
+> last.fm oraz zdefiniowanych przez niego wykonawców, a także koncerty, które śledzi.
 
 ### WYDARZENIA
 
 > W zakładce "WYDARZENIA" prezentowane są pozostałe wydarzenia w danym mieście,
-> zdefiniowane na podstawie tagów użytkownika, oraz miasta, w którym się znajduje.
+> zdefiniowane na podstawie tagów użytkownika, oraz miasta, w którym się znajduje, a także wydarzania, które śledzi.
 
 ### PROFIL
 
