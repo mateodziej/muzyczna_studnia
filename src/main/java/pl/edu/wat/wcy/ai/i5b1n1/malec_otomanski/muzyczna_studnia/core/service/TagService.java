@@ -1,6 +1,7 @@
 package pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.service;
 
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,9 @@ import java.util.Set;
 
 @Service
 public class TagService {
+
+    final static Logger logger = Logger.getLogger(TagService.class);
+
     private UserRepository userRepository;
     private TagRepository tagRepository;
 
@@ -30,6 +34,7 @@ public class TagService {
         Set<Tag> tags = new HashSet<>();
         Optional<User> dbUser = userRepository.findByUsername(username);
         if (dbUser.isPresent()) {
+            logger.debug("findTagsByUser username : " + username);
             tags = tagRepository.findAllByUsers(dbUser.get());
         }
         return tags;
@@ -44,6 +49,7 @@ public class TagService {
 
         Optional<User> dbUser = userRepository.findByUsername(username);
         if (dbUser.isPresent()) {
+            logger.info("add tag to user -> user : " + username + " tag : " + dbTag.get().getName());
             User user = dbUser.get();
             user.getTags().add(dbTag.get());
             userRepository.save(user);
@@ -57,6 +63,7 @@ public class TagService {
 
         Optional<User> dbUser = userRepository.findByUsername(username);
         if (dbUser.isPresent()) {
+            logger.info("remove tag from user -> user : " + username + " tag : " + dbTag.get().getName());
             User user = dbUser.get();
             user.getTags().remove(dbTag.get());
             userRepository.save(user);

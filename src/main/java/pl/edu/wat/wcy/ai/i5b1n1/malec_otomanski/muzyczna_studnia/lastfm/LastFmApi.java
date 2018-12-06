@@ -34,7 +34,6 @@ public class LastFmApi {
 
     private Request buildRequest(String username) {
         String urlWithUsername = String.format(url, username);
-        System.out.println("URL " + urlWithUsername);
         return new Request.Builder()
                 .url(urlWithUsername)
                 .build();

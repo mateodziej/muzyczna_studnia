@@ -23,19 +23,17 @@ public class HomeController {
     @GetMapping("/")
     public String getHome(Principal principal) {
         if(principal != null) return "redirect:/aplikacja";
+
         return "index";
     }
 
     @GetMapping("/aplikacja")
     public String getApp(Principal principal, Model model){
         if(principal == null) return "redirect:/";
-
         String name = principal.getName();
-        System.out.println("HOME CTRL USERNAME " + name);
         addUserIfNotExists(name);
         OAuth2Authentication auth;
         auth = (OAuth2Authentication) principal;
-        System.out.println("HOME CTRLR Principal " + auth.getUserAuthentication().getDetails().getClass().getName());
         Map<String, Object> details = (Map<String, Object>) auth.getUserAuthentication().getDetails();
         model.addAttribute("username", (String)details.get("name").toString());
 

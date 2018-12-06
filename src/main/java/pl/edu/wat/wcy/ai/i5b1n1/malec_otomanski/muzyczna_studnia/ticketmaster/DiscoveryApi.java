@@ -65,7 +65,6 @@ public class DiscoveryApi {
         }.getType();
         okhttp3.Response response = this.client.newCall(request).execute();
         String responseJson = response.body().string();
-        System.out.println("SEARCH EVENT " + responseJson);
         return Optional.ofNullable(new TypedPage<>(gson.fromJson(responseJson, complexType), complexType));
     }
 
@@ -136,7 +135,6 @@ public class DiscoveryApi {
         Request request = getRequest(builder.build());
         okhttp3.Response response = client.newCall(request).execute();
         String responseJson = response.body().string();
-        System.out.println("EVENT JSON " + responseJson);
         return Optional.ofNullable(gson.fromJson(responseJson, retClazz));
     }
 }

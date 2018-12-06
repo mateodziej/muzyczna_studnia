@@ -3,6 +3,7 @@ package pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.controlle
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,6 @@ public class EventManagementController {
     }
 
     @GetMapping("/{type}/{status}")
-    @Transactional
     public Page<UserEvent> getEvents(Principal principal,
                                     @PathVariable UserEvent.Type type,
                                     @PathVariable UserEvent.Status status,
@@ -36,14 +36,13 @@ public class EventManagementController {
     }
 
     @GetMapping("/popular/{type}/{status}")
-    @Transactional
     public List<UserEventProjection> getPopularEvents(@PathVariable UserEvent.Type type,
                                                       @PathVariable UserEvent.Status status) {
         return eventManagementService.getPopularEvents(type, status);
     }
 
     @PutMapping("/{status}/{ticketmasterId}")
-    @Transactional
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateEventStatus(Principal principal,
                                   @PathVariable UserEvent.Status status,
                                   @PathVariable String ticketmasterId) {

@@ -1,5 +1,6 @@
 package pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.service;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,6 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class EventManagementService {
 
+    final static Logger logger = Logger.getLogger(EventManagementService.class);
+
     private UserEventRepository userEventRepository;
     private EventRepository eventRepository;
     private UserRepository userRepository;
@@ -39,6 +42,7 @@ public class EventManagementService {
     public void addEvent(StoredEvent event) {
         if (eventRepository.findByTicketmasterId(event.getTicketmasterId())
                 .isPresent()) return;
+        logger.debug("addEvent -> ticketmasterId : " + event.getTicketmasterId());
         eventRepository.save(event);
     }
 
@@ -52,8 +56,10 @@ public class EventManagementService {
                             .ifPresent(storedEvent -> {
                                 userEventRepository.findByUserAndStoredEvent(user, storedEvent)
                                         .ifPresent(userEvent -> {
+                                            logger.debug("event and user present");
                                             userEvent.setStatus(status);
                                             userEventRepository.save(userEvent);
+
                                         });
                             });
                 });
@@ -68,6 +74,7 @@ public class EventManagementService {
         Page<UserEvent> eventsPage = new PageImpl<>(new ArrayList<>(), pageable, 0);
         Optional<User> dbUser = userRepository.findByUsername(username);
         if (!dbUser.isPresent()) return eventsPage;
+        logger.debug("getEventsBy -> username : " + username + " type : " + type.name() + " status : " + status.name());
         return userEventRepository.findAllByUserAndTypeAndStatusOrderById(
                 dbUser.get(),
                 type,
@@ -76,6 +83,7 @@ public class EventManagementService {
     }
 
     public List<UserEventProjection> getPopularEvents(UserEvent.Type type, UserEvent.Status status) {
+        logger.debug("popularEvents");
         return userEventRepository.getMostPopularOf(type, status)
                 .stream()
                 .limit(10)

@@ -22,5 +22,5 @@ public interface UserEventRepository extends JpaRepository<UserEvent, UserEventI
 
     @Query(value = "SELECT new pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEventProjection(u.storedEvent, count(1) AS nr) FROM UserEvent u WHERE u.type = ?1 AND u.status = ?2 GROUP BY u.storedEvent ORDER BY nr DESC")
     List<UserEventProjection> getMostPopularOf(UserEvent.Type type, UserEvent.Status status);
-    //new pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.core.model.UserEventProjection(u.storedEvent, count(1))
+
 }
