@@ -1,3 +1,7 @@
+<div class="courtain-box">
+      <div class="courtain" ng-show="loader">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+         </div>
 <div class="section-title-box" ng-if="otherEventsWall.length > 0" id="go-to-wall">
    <div class="container section-title">
       <img src="../images/liked2.jpg" />
@@ -307,5 +311,6 @@
    <a id="wall-f-btn" ng-if="otherEventsWall.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">apps</i></a>
    <a id="liked-f-btn" ng-if="otherEventsLiked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_up</i></a>
    <a id="disliked-f-btn" ng-if="otherEventsDisliked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_down</i></a>
+</div>
 </div>
 <script src="../js/fixed-btns.js"></script>

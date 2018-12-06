@@ -1,5 +1,4 @@
 @import 'colors';
-@import 'music';
 * {
     box-sizing: border-box;
 }
@@ -452,4 +451,26 @@ body {
     visibility: hidden;
     opacity: 0;
     bottom: -100px;
+}
+
+.courtain-box{
+    position: relative;
+    .courtain{
+        display: flex;
+        align-items: flex-start;
+        padding-top: 40px;
+        justify-content: center;
+        background-color: rgba(0,0,0, 0.9);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        position: absolute;
+
+        i{
+            color: #FFF;
+            font-size: 70px;
+        }
+    }
 }
