@@ -13,7 +13,7 @@
         }
 
         var setupLoader = function(delay){
-            if($rootScope.musicDirty === true){
+            if($rootScope.otherDirty === true){
                 enableLoader();
                 $timeout(disableLoader, delay);
             }
@@ -21,12 +21,10 @@
 
         var enableLoader = function(){
             $scope.loader = true;
-            console.log("enable loader");
         }
 
         var disableLoader = function(){
             $scope.loader = false;
-            console.log("disable loader");
         }
 
         var getEventsOnStart = function () {

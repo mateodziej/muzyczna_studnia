@@ -456,21 +456,34 @@ body {
 .courtain-box{
     position: relative;
     .courtain{
-        display: flex;
-        align-items: flex-start;
-        padding-top: 40px;
+        position: absolute;
         justify-content: center;
         background-color: rgba(0,0,0, 0.9);
         height: 100%;
         width: 100%;
         top: 0;
         left: 0;
-        z-index: 999;
-        position: absolute;
-
+        z-index: 50;
+        
         i{
+            margin-top: 40px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
             color: #FFF;
             font-size: 70px;
+            transition: 0.4s;
+        }
+    }
+
+    .courtain-fixed{
+        transition: 0.4s;
+        position: fixed !important;
+
+        i{
+            margin-top: 50vh !important;
+            transition: 0.4s;
         }
     }
 }

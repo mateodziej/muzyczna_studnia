@@ -21,12 +21,10 @@
 
         var enableLoader = function(){
             $scope.loader = true;
-            console.log("enable loader");
         }
 
         var disableLoader = function(){
             $scope.loader = false;
-            console.log("disable loader");
         }
 
         var getEventsOnStart = function () {
