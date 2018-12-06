@@ -5,7 +5,7 @@
   <servers>
     <server>
       <id>packagecloud-mateodziej</id>
-      <password>0cff57445d49c5f94d708fb0c5a278163942ef50726b0dee</password>
+      <password>secret</password>
     </server>
   </servers>
 </settings>
