@@ -60,7 +60,7 @@ Opis modułów graficznego interfejsu użytkownika aplikacji internetowej
 ### WYDARZENIA
 
 > W zakładce "WYDARZENIA" prezentowane są pozostałe wydarzenia w danym mieście,
-> zdefiniowane na podstawie tagów użytkownika.
+> zdefiniowane na podstawie tagów użytkownika, oraz miasta, w którym się znajduje.
 
 ### PROFIL
 
