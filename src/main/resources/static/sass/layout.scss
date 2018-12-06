@@ -29,7 +29,7 @@ body {
 }
 
 .logo-item-min {
-    font-size: 16px !important;
+    font-size: 18px !important;
 }
 
 .logo-min {
@@ -190,7 +190,7 @@ body {
                 } //background-image: url("../images/back3.jpg");
                 background-position: center;
                 background-size: cover;
-                background-color: #0a3444;
+                background-color: transparent;
             }
             .full-back {
                 width: 100%;
@@ -238,6 +238,16 @@ body {
                 margin-bottom: 16px;
                 vertical-align: middle;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                .ms-img-box{
+                    overflow: hidden;
+                    img{
+                        transition: all 0.3s;
+                    }
+
+                    &:hover img{
+                        transform: scale(1.1);
+                    }
+                }
                 .ms-card-bottom {
                     position: relative;
                     padding: 10px;
@@ -268,6 +278,10 @@ body {
                         flex-direction: row;
                         align-items: center;
                         justify-content: flex-end;
+                        background-image: url(../images/back3.jpg);
+                        /* object-fit: inherit; */
+                        background-position: center;
+                        background-size: 300px 100px;
                         button {
                             margin-left: 10px;
                         }
@@ -445,6 +459,9 @@ body {
     padding-bottom: 24px;
     transition: 0.2s ease-out;
     opacity: 1;
+    a{
+        background-color: #242f3e !important;
+    }
 }
 
 .btns-hide {
@@ -486,4 +503,8 @@ body {
             transition: 0.4s;
         }
     }
+}
+
+.btn{
+    background-color: #242f3e !important;
 }

@@ -4,13 +4,13 @@
          </div>
 <div class="section-title-box" ng-if="otherEventsWall.length > 0" id="go-to-wall">
    <div class="container section-title">
-      <img src="../images/liked2.jpg" />
+      <!-- <img src="../images/liked2.jpg" /> -->
       <span>Znalezione.</span>
    </div>
 </div>
 <div class="section-title-box" ng-if="otherEventsWall.length === 0 && otherEventsLiked.length === 0 && otherEventsDisliked.length === 0">
    <div class="container section-title">
-      <img src="../images/liked2.jpg" />
+      <!-- <img src="../images/liked2.jpg" /> -->
       <span>Topka.</span>
    </div>
 </div>
@@ -25,7 +25,7 @@
                      <div class="ms-section-title-card"><span>#topka</span></div>
                      <div class="ms-card" ng-repeat="musicEvent in otherEventsTop" ng-if="$odd">
                         <!-- zdjecie -->
-                        <div>
+                        <div class="ms-img-box">
                            <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
                         </div>
                         <!-- dolna czesc -->
@@ -64,7 +64,7 @@
                   <div class="ms-cards-col">
                      <div class="ms-card" ng-repeat="musicEvent in otherEventsTop" ng-if="$even">
                         <!-- zdjecie -->
-                        <div>
+                        <div class="ms-img-box">
                            <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
                         </div>
                         <!-- dolna czesc -->
@@ -116,7 +116,7 @@
                   <div class="ms-section-title-card"><span>#{{keyword}}</span></div>
                   <div class="ms-card" ng-repeat="musicEvent in otherEventsWall | byKeyword: keyword" ng-if="$odd">
                      <!-- zdjecie -->
-                     <div>
+                     <div class="ms-img-box">
                         <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
                      </div>
                      <!-- dolna czesc -->
@@ -155,7 +155,7 @@
                <div class="ms-cards-col">
                   <div class="ms-card" ng-repeat="musicEvent in otherEventsWall | byKeyword: keyword" ng-if="$even">
                      <!-- zdjecie -->
-                     <div>
+                     <div class="ms-img-box">
                         <img style="width: 100%;" ng-src="{{musicEvent.storedEvent.imageUrl}}" alt="promo">
                      </div>
                      <!-- dolna czesc -->
@@ -204,7 +204,7 @@
 <!-- Polubione -->
 <div class="section-title-box" ng-if="otherEventsLiked.length > 0" id="go-to-liked">
    <div class="container section-title">
-      <img src="../images/liked2.jpg" />
+      <!-- <img src="../images/liked2.jpg" /> -->
       <span>Polubione.</span>
    </div>
 </div>
@@ -244,7 +244,7 @@
             </div>
             <!-- przyciski -->
             <div class="btn-box">
-               <button class="btn btn-primary btn-small" ng-click="addToWallFromLiked($index)">Odlub</button>
+               <button class="btn btn-primary btn-small" ng-click="addToWallFromLiked($index)"><i class="fa fa-undo" aria-hidden="true"></i></button>
             </div>
          </div>
       </div>
@@ -257,7 +257,7 @@
 <!-- Odlubione -->
 <div class="section-title-box" ng-if="otherEventsDisliked.length > 0" id="go-to-disliked">
    <div class="container section-title">
-      <img src="../images/liked2.jpg" />
+      <!-- <img src="../images/liked2.jpg" /> -->
       <span>Nie lubię.</span>
    </div>
 </div>
@@ -297,7 +297,7 @@
             </div>
             <!-- przyciski -->
             <div class="btn-box">
-               <button class="btn btn-primary btn-small" ng-click="addToWallFromDisliked($index)">Odlub</button>
+               <button class="btn btn-primary btn-small" ng-click="addToWallFromDisliked($index)"><i class="fa fa-undo" aria-hidden="true"></i></button>
             </div>
          </div>
       </div>
@@ -308,9 +308,9 @@
    </div>
 </div>
 <div class="btns-fixed">
-   <a id="wall-f-btn" ng-if="otherEventsWall.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">apps</i></a>
-   <a id="liked-f-btn" ng-if="otherEventsLiked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_up</i></a>
-   <a id="disliked-f-btn" ng-if="otherEventsDisliked.length > 0" class="btn-floating waves-effect waves-light light-blue accent-3"><i class="material-icons">thumb_down</i></a>
+   <a id="wall-f-btn" ng-if="otherEventsWall.length > 0" class="btn-floating waves-effect waves-light"><i class="material-icons">apps</i></a>
+   <a id="liked-f-btn" ng-if="otherEventsLiked.length > 0" class="btn-floating waves-effect waves-light"><i class="material-icons">thumb_up</i></a>
+   <a id="disliked-f-btn" ng-if="otherEventsDisliked.length > 0" class="btn-floating waves-effect waves-light"><i class="material-icons">thumb_down</i></a>
 </div>
 </div>
 <script src="../js/fixed-btns.js"></script>
