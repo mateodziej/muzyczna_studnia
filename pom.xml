@@ -126,38 +126,21 @@
 		</extensions>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-dependencies</id>
-							<phase>prepare-package</phase>
-								<goals>
-									<goal>copy-dependencies</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>
-										libs
-									</outputDirectory>
-								</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>libs/</classpathPrefix>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
 							<mainClass>
 								pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski.muzyczna_studnia.MuzycznaStudniaApplication
 							</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			
 			
