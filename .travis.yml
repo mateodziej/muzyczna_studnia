@@ -8,11 +8,8 @@ cache:
   - "$HOME/.cache"
 
 deploy:
-  provider: packagecloud
-  repository: "muzyczna-studnia"
-  username: "mateodziej"
-  token: $PACKAGECLOUD_TOKEN
+  provider: script
+  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
   skip_cleanup: true
   on:
-    all_branches: true
     tags: true
