@@ -19,7 +19,7 @@ Back-end:
   - Google SSO OAuth 2
   - Spring Data JPA
   - Hibernate
-  - PostgreSQL
+  - MySQL
 
 ### Narzędzia i Środowiska
   -  Java SE 1.8 -> https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
