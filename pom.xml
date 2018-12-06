@@ -124,12 +124,6 @@
 				<version>0.0.4</version>
 			</extension>
 		</extensions>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
 
 	<distributionManagement>
