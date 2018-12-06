@@ -17,6 +17,7 @@ Front-end:
 Back-end:
   - Spring Boot
   - Spring Security
+  - Google SSO
   - Spring Data JPA
   - Hibernate
   - PostgreSQL
