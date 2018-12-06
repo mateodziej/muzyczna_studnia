@@ -5,7 +5,7 @@
 
 	<groupId>pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski</groupId>
 	<artifactId>muzyczna_studnia</artifactId>
-	<version>1.6</version>
+	<version>1.8</version>
 	<packaging>jar</packaging>
 
 	<name>muzyczna_studnia</name>
