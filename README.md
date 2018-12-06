@@ -26,26 +26,26 @@ Back-end:
   - Travis CI -> https://travis-ci.org/mateodziej/muzyczna_studnia
   - Packagecloud -> https://packagecloud.io/mateodziej/muzyczna-studnia
 
-Zewnętrzne REST API:
+### Zewnętrzne REST API:
   - https://www.last.fm/pl/api
   - https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
   - https://cloud.google.com/maps-platform/
 
 ## Instrukcja instalacji
 
-Kolejne wersje aplikacji są budowane i wdrażane za pomocą Travis CI na platformę Packageclodud.
+> Kolejne wersje aplikacji są budowane i wdrażane za pomocą Travis CI na platformę Packageclodud.
 
-Należy pobrać aktualną wersję wchodząc pod adres:
+1. Należy pobrać aktualną wersję wchodząc pod adres:
 ```sh
 https://packagecloud.io/mateodziej/muzyczna-studnia
 ```
 
-Pobrany plik muzyczna_studnia-{wersja}.jar uruchamiamy w terminalu poleceniem:
+2. Pobrany plik muzyczna_studnia-{wersja}.jar uruchamiamy w terminalu poleceniem:
 ```sh
 java -jar muzyczna_studnia-{wersja}.jar
 ```
 
-Do poprawnego działania wymagane jest środowisko Java SE 1.8 -> https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+> Do poprawnego działania wymagane jest środowisko Java SE 1.8 -> https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
 
 ## Instrukcja użytkownika
 
