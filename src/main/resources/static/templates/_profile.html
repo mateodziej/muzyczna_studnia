@@ -3,67 +3,58 @@
        <img ng-src="{{auth.userAuthentication.details.picture}}" />
        <span>{{auth.userAuthentication.details.name}}</span>
     </div>
-</div>
-
-<div class="full-back">
+ </div>
+ <div class="full-back">
     <div class="profile-flex-con">
-        <div class="left-side">
-                <div class="vp-60">
-                        <div id="city-edit-box">
-                                <button id="city-edit-btn" ng-click="openCityModal()" class="btn btn-primary">
-                                    Miasto: {{user.city}} 
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
-                                <div id="city-modal">
-                                    <input type="text" class="form-control display-inline form-control-sm" placeholder="Miasto..." id="new-city-name" ng-model="updateCityName"
-                                        on-enter="updateCity()" />
-                                    <button class="btn btn-primary btn-sm" ng-click="updateCity()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                                    <button class="btn btn-light btn-sm" ng-click="closeCityModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </div>
-                                <button id="find-me" ng-click="findMe()" class="btn btn-primary">Znajdź mnie na mapie</button>
-                        </div>
-            
-                        <div id="lastfm-edit-box">
-                                <button id="lastfm-edit-btn" ng-click="openLastfmModal()" class="btn btn-primary">Last Fm:
-                                    {{user.lastFmUsername}} <i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                <div id="lastfm-modal">
-                                    <input type="text" class="form-control display-inline form-control-sm" placeholder="Last Fm..."
-                                        ng-model="updateLastFmName" on-enter="updateLastFm()" />
-                                    <button class="btn btn-primary btn-sm" ng-click="updateLastFm()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                                    <button class="btn btn-light btn-sm" ng-click="closeLastfmModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </div>
-                    
-                        </div>
-                        <div class="tag-box">
-                            <span>Artyści</span>
-                            <input class="input-field" type="text" on-enter="addArtist()" ng-model="addArtistName" />
-                            
-                        </div>
-                        <div class="tag-box">
-                                <div class="tag" ng-repeat="artist in artists">
-                                        <span>#{{artist.name}}</span>
-                                        <button ng-click="removeArtist($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                </div>
-                        </div>
-                        <div class="tag-box mt-20">
-                                <span>Tagi</span>
-                                <input class="input-field" type="text" on-enter="addTag()" ng-model="addTagName" />
-                                
-                            </div>
-                            <div class="tag-box">
-                                    <div class="tag" ng-repeat="tag in tags">
-                                            <span>#{{tag.name}}</span>
-                                            <button ng-click="removeTag($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </div>
-                            </div>
-            
+       <div class="left-side">
+          <div class="vp-60">
+             <div id="city-edit-box">
+                <button id="city-edit-btn" ng-click="openCityModal()" class="btn btn-primary">
+                Miasto: {{user.city}} 
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+                <div id="city-modal">
+                   <input type="text" class="form-control display-inline form-control-sm" placeholder="Miasto..." id="new-city-name" ng-model="updateCityName"
+                      on-enter="updateCity()" />
+                   <button class="btn btn-primary btn-sm" ng-click="updateCity()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                   <button class="btn btn-light btn-sm" ng-click="closeCityModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </div>
-        </div>
-        <div class="right-side">
-            <div id="googleMap" style="width:100%;height:100%;"></div>
-        </div>
+                <button id="find-me" ng-click="findMe()" class="btn btn-primary">Znajdź mnie na mapie</button>
+             </div>
+             <div id="lastfm-edit-box">
+                <button id="lastfm-edit-btn" ng-click="openLastfmModal()" class="btn btn-primary">Last Fm:
+                {{user.lastFmUsername}} <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <div id="lastfm-modal">
+                   <input type="text" class="form-control display-inline form-control-sm" placeholder="Last Fm..."
+                      ng-model="updateLastFmName" on-enter="updateLastFm()" />
+                   <button class="btn btn-primary btn-sm" ng-click="updateLastFm()"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                   <button class="btn btn-light btn-sm" ng-click="closeLastfmModal()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+             </div>
+             <div class="tag-box">
+                <span>Artyści</span>
+                <input class="input-field" type="text" on-enter="addArtist()" ng-model="addArtistName" />
+             </div>
+             <div class="tag-box">
+                <div class="tag" ng-repeat="artist in artists">
+                   <span>#{{artist.name}}</span>
+                   <button ng-click="removeArtist($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+             </div>
+             <div class="tag-box mt-20">
+                <span>Tagi</span>
+                <input class="input-field" type="text" on-enter="addTag()" ng-model="addTagName" />
+             </div>
+             <div class="tag-box">
+                <div class="tag" ng-repeat="tag in tags">
+                   <span>#{{tag.name}}</span>
+                   <button ng-click="removeTag($index)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="right-side">
+          <div id="googleMap" style="width:100%;height:100%;"></div>
+       </div>
     </div>
-    
-</div>
-
-<!-- -->
+ </div>

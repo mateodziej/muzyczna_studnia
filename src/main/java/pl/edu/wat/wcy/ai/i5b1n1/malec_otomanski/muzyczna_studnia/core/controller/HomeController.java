@@ -44,7 +44,7 @@ public class HomeController {
     public String getCms(Principal principal) {
         if(principal == null) return "redirect:/";
 
-        return "app";
+        return "cms";
     }
 
     private void addUserIfNotExists(String name) {

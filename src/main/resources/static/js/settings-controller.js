@@ -216,171 +216,171 @@
         closeCityModal();
         closeLastfmModal();
 
-    var getCities = function(){
-        $.getJSON("/js/cities.json", function(data){
-            $scope.cities = data;
-           
-        });
-    }
+        var getCities = function () {
+            $.getJSON("/js/cities.json", function (data) {
+                $scope.cities = data;
 
-    getCities();
-
-    var getLocation = function() {
-        
-        //navigator.geolocation.clearWatch(getPosition);
-        if (navigator.geolocation) {
-            
-            navigator.geolocation.getCurrentPosition(getPosition);
-            
-        } else { 
-            
+            });
         }
-    }
-        
-    var getPosition = function(position) {
-        
-        let myLat = position.coords.latitude; 
-        let myLng = position.coords.longitude;
-        var myLatLng = {lat: myLat, lng: myLng};
-        let city = findCity(myLatLng);
-        
-        $scope.$apply(function(){
-            $scope.updateCityName = city.name;
-        });
-        openCityModal();
-        var cityLatLng = {lat: Number(city.lat), lng: Number(city.lng)};
-        placeMarker(cityLatLng);
-    }
 
-    var findCity = function(latLng){
-        let selectedCity = $scope.cities[0];
-        let distSqr = ((latLng.lat - $scope.cities[0].lat )**2) + ((latLng.lng - $scope.cities[0].lng )**2);
-        let minDistance = Math.sqrt(Math.abs(distSqr));
+        getCities();
 
-        for(index = 1; index < $scope.cities.length; index++){
-            let city = $scope.cities[index];
-            
-            let cityLat = Number(city.lat);
-            let cityLng = Number(city.lng);
-            
-            let distSquared = ((latLng.lat - cityLat )**2) + ((latLng.lng - cityLng )**2);
-            
-            let distance = Math.sqrt( Math.abs(distSquared));
-            
-            if(distance < minDistance){
-                minDistance = distance;
-                selectedCity = city;
+        var getLocation = function () {
+
+            //navigator.geolocation.clearWatch(getPosition);
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(getPosition);
+
+            } else {
+
             }
-            
         }
-        return selectedCity;
-    }
 
-    var placeMarker = function(location) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: $scope.map
-        });
-        $scope.map.setZoom(10);
-        $scope.map.setCenter(marker.getPosition());
-    }
+        var getPosition = function (position) {
 
-    $scope.findMe = getLocation;
+            let myLat = position.coords.latitude;
+            let myLng = position.coords.longitude;
+            var myLatLng = { lat: myLat, lng: myLng };
+            let city = findCity(myLatLng);
 
-    var initMap = function () {
-        var mapProp = {
-            center:new google.maps.LatLng(51.508742,-0.120850),
-            zoom:10,
-            styles: [
-                {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-                {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-                {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-                {
-                  featureType: 'administrative.locality',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'poi',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'poi.park',
-                  elementType: 'geometry',
-                  stylers: [{color: '#263c3f'}]
-                },
-                {
-                  featureType: 'poi.park',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#6b9a76'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'geometry',
-                  stylers: [{color: '#38414e'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'geometry.stroke',
-                  stylers: [{color: '#212a37'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#9ca5b3'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'geometry',
-                  stylers: [{color: '#746855'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'geometry.stroke',
-                  stylers: [{color: '#1f2835'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#f3d19c'}]
-                },
-                {
-                  featureType: 'transit',
-                  elementType: 'geometry',
-                  stylers: [{color: '#2f3948'}]
-                },
-                {
-                  featureType: 'transit.station',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'geometry',
-                  stylers: [{color: '#17263c'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#515c6d'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'labels.text.stroke',
-                  stylers: [{color: '#17263c'}]
+            $scope.$apply(function () {
+                $scope.updateCityName = city.name;
+            });
+            openCityModal();
+            var cityLatLng = { lat: Number(city.lat), lng: Number(city.lng) };
+            placeMarker(cityLatLng);
+        }
+
+        var findCity = function (latLng) {
+            let selectedCity = $scope.cities[0];
+            let distSqr = ((latLng.lat - $scope.cities[0].lat) ** 2) + ((latLng.lng - $scope.cities[0].lng) ** 2);
+            let minDistance = Math.sqrt(Math.abs(distSqr));
+
+            for (index = 1; index < $scope.cities.length; index++) {
+                let city = $scope.cities[index];
+
+                let cityLat = Number(city.lat);
+                let cityLng = Number(city.lng);
+
+                let distSquared = ((latLng.lat - cityLat) ** 2) + ((latLng.lng - cityLng) ** 2);
+
+                let distance = Math.sqrt(Math.abs(distSquared));
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    selectedCity = city;
                 }
-              ]
-    
-        };
 
-        
-            $scope.map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            }
+            return selectedCity;
+        }
 
-        
-    }
+        var placeMarker = function (location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: $scope.map
+            });
+            $scope.map.setZoom(10);
+            $scope.map.setCenter(marker.getPosition());
+        }
 
-    initMap();
+        $scope.findMe = getLocation;
+
+        var initMap = function () {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 10,
+                styles: [
+                    { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                    {
+                        featureType: 'administrative.locality',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#d59563' }]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#d59563' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#263c3f' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#6b9a76' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#38414e' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry.stroke',
+                        stylers: [{ color: '#212a37' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#9ca5b3' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#746855' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry.stroke',
+                        stylers: [{ color: '#1f2835' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#f3d19c' }]
+                    },
+                    {
+                        featureType: 'transit',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#2f3948' }]
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#d59563' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#17263c' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#515c6d' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.stroke',
+                        stylers: [{ color: '#17263c' }]
+                    }
+                ]
+
+            };
+
+
+            $scope.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+
+        }
+
+        initMap();
 
     };
 

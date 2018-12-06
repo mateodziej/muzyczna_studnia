@@ -40,9 +40,7 @@ body {
 }
 
 .parallax {
-    /* The image used */
     background-image: url("../images/back2.jpg");
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -168,40 +166,34 @@ body {
     }
     .container-wrapper {
         width: 100%;
-        background-color: transparent;
-        //margin-top: 400px;
+        background-color: transparent; //margin-top: 400px;
         #app-container {
             //min-height: 500px;
-            .section-title-box{
+            .section-title-box {
                 width: 100%;
-                .section-title{
+                .section-title {
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
                     padding-top: 50px;
                     padding-bottom: 50px;
-                    img{
+                    img {
                         height: 200px;
                         object-fit: cover;
                         margin-right: 60px;
                     }
-                    span{
+                    span {
                         color: #FFF;
                         font-size: 50px;
                         font-weight: 900;
                         font-family: 'Montserrat', sans-serif;
                     }
-                }
-                
-                //background-image: url("../images/back3.jpg");
-                background-position: center; 
+                } //background-image: url("../images/back3.jpg");
+                background-position: center;
                 background-size: cover;
                 background-color: #0a3444;
-                
-                
             }
-
-            .full-back{
+            .full-back {
                 width: 100%;
                 background-color: #FFF;
             }
@@ -269,7 +261,6 @@ body {
                         font-weight: 300;
                         color: #CCC;
                     }
-                    .prince-box {}
                     .bottom-btns-box {
                         margin: 10px -10px -10px -10px;
                         padding: 10px;
@@ -302,7 +293,6 @@ body {
             height: 100%;
             object-fit: cover;
         }
-        .btn-box {}
     }
     .more-btn-box {
         width: 100%;
@@ -361,16 +351,14 @@ body {
         display: inline-block !important;
         width: fit-content !important;
     }
-
-    .continue-box{
+    .continue-box {
         width: 100%;
         height: 100vh;
         display: flex;
         align-items: flex-end;
         justify-content: center;
         padding-bottom: 70px;
-
-        #continue-btn{
+        #continue-btn {
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
@@ -380,10 +368,8 @@ body {
             background-color: transparent;
             border: none;
             text-decoration: none;
-            
             cursor: pointer;
-
-            i{
+            i {
                 font-size: 40px;
                 animation-name: continue-btn-anim;
                 animation-duration: 0.4s;
@@ -394,7 +380,7 @@ body {
     }
 }
 
-.vp-60{
+.vp-60 {
     padding-top: 60px;
     padding-bottom: 60px;
 }
@@ -410,29 +396,24 @@ body {
     }
 }
 
-.profile-flex-con{
+.profile-flex-con {
     display: flex;
     flex-direction: row;
-    .left-side{
+    .left-side {
         width: 40%;
         padding-left: 15px;
         padding-right: 15px;
-
-        .tag-box{
+        .tag-box {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             align-items: flex-start;
-            
-
-            > span{
+            >span {
                 font-family: 'Gloria Hallelujah', cursive;
                 font-size: 30px;
                 font-weight: 900;
             }
-            
-
-            .tag{
+            .tag {
                 margin-top: 10px;
                 margin-right: 10px;
                 margin-bottom: 10px;
@@ -440,8 +421,7 @@ body {
                 padding: 5px;
                 font-weight: 700;
                 font-size: 24px;
-
-                button{
+                button {
                     border: none;
                     background: none;
                     cursor: pointer;
@@ -449,17 +429,16 @@ body {
             }
         }
     }
-
-    .right-side{
+    .right-side {
         width: 60%;
     }
 }
 
-.mt-20{
+.mt-20 {
     margin-top: 20px;
 }
 
-.btns-fixed{
+.btns-fixed {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -469,9 +448,8 @@ body {
     opacity: 1;
 }
 
-.btns-hide{
+.btns-hide {
     visibility: hidden;
     opacity: 0;
     bottom: -100px;
 }
-

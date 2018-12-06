@@ -1,47 +1,47 @@
-(function(){
+(function () {
 
     var app = angular.module("ticketmajster");
 
-    var OtherController = function($scope, $rootScope, $location, $http, $timeout){
+    var OtherController = function ($scope, $rootScope, $location, $http, $timeout) {
 
         $rootScope.subpage = 1;
 
-        var onStart = function(){
+        var onStart = function () {
             $timeout(getEventsOnStart, 1000);
         }
-        
-        var getEventsOnStart = function(){
-            if($rootScope.otherDirty !== true) return;
+
+        var getEventsOnStart = function () {
+            if ($rootScope.otherDirty !== true) return;
 
             $rootScope.otherEventsWall.length = 0;
             //$rootScope.otherEventsLiked.length = 0;
             //$rootScope.otherEventsDisliked.length = 0;
 
             let wallUrl = "http://localhost:8080/api/events/other/wall?size=" + $rootScope.requestPageSize + "&page=0";
-            
+
             console.log("getotherEvents() wall url -> " + wallUrl);
-            
+
             $http.get(wallUrl)
-            .then(onWallSuccess);
-            if($rootScope.otherFirstStart === true){
+                .then(onWallSuccess);
+            if ($rootScope.otherFirstStart === true) {
                 let likedUrl = "http://localhost:8080/api/events/other/liked?size=" + $rootScope.requestPageSize + "&page=0";
-            
+
                 console.log("getotherEvents() wall url -> " + likedUrl);
-            
+
                 $http.get(likedUrl)
-                .then(onLikedSuccess);
+                    .then(onLikedSuccess);
 
                 let dislikedUrl = "http://localhost:8080/api/events/other/disliked?size=" + $rootScope.requestPageSize + "&page=0";
-            
+
                 console.log("getotherEvents() wall url -> " + dislikedUrl);
-            
+
                 $http.get(dislikedUrl)
-                .then(onDislikedSuccess);
+                    .then(onDislikedSuccess);
 
                 let topUrl = "http://localhost:8080/api/events/popular/other/liked"
 
                 $http.get(topUrl)
-                .then(onTopSuccess);
+                    .then(onTopSuccess);
 
                 $rootScope.otherFirstStart = false;
             }
@@ -49,17 +49,17 @@
             $rootScope.otherDirty = false;
         }
 
-        var onTopSuccess = function(response){
+        var onTopSuccess = function (response) {
             $rootScope.otherEventsTop = response.data;
         }
 
-        var onWallSuccess = function(response){
+        var onWallSuccess = function (response) {
             $rootScope.otherEventsWall = $rootScope.otherEventsWall.concat(response.data.content);
             $rootScope.otherEventsWallCurrentPageNumber = response.data.number;
             $rootScope.otherEventsWallTotalPages = response.data.totalPages;
         }
 
-        var onLikedSuccess = function(response){
+        var onLikedSuccess = function (response) {
             console.log("other liked response");
             console.log(response.data);
             $rootScope.otherEventsLiked = $rootScope.otherEventsLiked.concat(response.data.content);
@@ -67,7 +67,7 @@
             $rootScope.otherEventsLikedTotalPages = response.data.totalPages;
         }
 
-        var onDislikedSuccess = function(response){
+        var onDislikedSuccess = function (response) {
             $rootScope.otherEventsDisliked = $rootScope.otherEventsDisliked.concat(response.data.content);
             $rootScope.otherEventsDislikedCurrentPageNumber = response.data.number;
             $rootScope.otherEventsDislikedTotalPages = response.data.totalPages;
@@ -76,190 +76,190 @@
         //getEventsOnStart();
         onStart();
 
-        var getWallNextPage = function(){
+        var getWallNextPage = function () {
             console.log("other wall next page click");
-            if($rootScope.otherEventsWallTotalPages == 0) return;
-            if($rootScope.otherEventsWallTotalPages == $rootScope.otherEventsWallCurrentPageNumber + 1) return;
+            if ($rootScope.otherEventsWallTotalPages == 0) return;
+            if ($rootScope.otherEventsWallTotalPages == $rootScope.otherEventsWallCurrentPageNumber + 1) return;
 
             let wallUrl = "http://localhost:8080/api/events/other/wall?size=" + $rootScope.requestPageSize + "&page=" + ($rootScope.otherEventsWallCurrentPageNumber + 1);
 
             $http.get(wallUrl)
-            .then(onWallSuccess);
+                .then(onWallSuccess);
         }
 
         $scope.getWallNextPage = getWallNextPage;
 
-        var getLikedNextPage = function(){
+        var getLikedNextPage = function () {
             console.log("other liked next page click");
-            if($rootScope.otherEventsLikedTotalPages == 0) return;
-            if($rootScope.otherEventsLikedTotalPages == $rootScope.otherEventsLikedCurrentPageNumber + 1) return;
+            if ($rootScope.otherEventsLikedTotalPages == 0) return;
+            if ($rootScope.otherEventsLikedTotalPages == $rootScope.otherEventsLikedCurrentPageNumber + 1) return;
 
             let likedUrl = "http://localhost:8080/api/events/other/liked?size=" + $rootScope.requestPageSize + "&page=" + ($rootScope.otherEventsLikedCurrentPageNumber + 1);
 
             $http.get(likedUrl)
-            .then(onLikedSuccess);
+                .then(onLikedSuccess);
         }
 
         $scope.getLikedNextPage = getLikedNextPage;
 
-        var getDislikedNextPage = function(){
+        var getDislikedNextPage = function () {
             console.log("other disliked next page click");
-            if($rootScope.otherEventsDislikedTotalPages == 0) return;
-            if($rootScope.otherEventsDislikedTotalPages == $rootScope.otherEventsDislikedCurrentPageNumber + 1) return;
+            if ($rootScope.otherEventsDislikedTotalPages == 0) return;
+            if ($rootScope.otherEventsDislikedTotalPages == $rootScope.otherEventsDislikedCurrentPageNumber + 1) return;
 
             let dislikedUrl = "http://localhost:8080/api/events/other/disliked?size=" + $rootScope.requestPageSize + "&page=" + ($rootScope.otherEventsDislikedCurrentPageNumber + 1);
 
             $http.get(dislikedUrl)
-            .then(onDislikedSuccess);
+                .then(onDislikedSuccess);
         }
 
         $scope.getDislikedNextPage = getDislikedNextPage;
 
-        var addLiked = function(ticketmasterId){
+        var addLiked = function (ticketmasterId) {
             console.log("addLiked start tmId " + ticketmasterId);
             let index = -1;
-            for(i=0; i<$rootScope.otherEventsWall.length; i++){
-                if($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId){
+            for (i = 0; i < $rootScope.otherEventsWall.length; i++) {
+                if ($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId) {
                     index = i;
                     break;
                 }
             }
             console.log("addLiked index val " + index);
-            if(index === -1) return;
+            if (index === -1) return;
             let items = $rootScope.otherEventsWall.splice(index, 1);
             $rootScope.otherEventsLiked.push(items[0]);
             console.log("liked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddLikedSuccess);
+                .then(onAddLikedSuccess);
         }
 
-        var addLikedTop = function(ticketmasterId){
+        var addLikedTop = function (ticketmasterId) {
             console.log("addLikedTop start tmId " + ticketmasterId);
             let index = -1;
-            for(i=0; i<$rootScope.otherEventsTop.length; i++){
-                if($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+            for (i = 0; i < $rootScope.otherEventsTop.length; i++) {
+                if ($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId) {
                     index = i;
                     break;
                 }
             }
             console.log("addLiked index val " + index);
-            if(index === -1) return;
+            if (index === -1) return;
             let items = $rootScope.otherEventsTop.splice(index, 1);
             $rootScope.otherEventsLiked.push(items[0]);
             console.log("liked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddLikedSuccess);
+                .then(onAddLikedSuccess);
         }
 
-        var addDislikedTop = function(ticketmasterId){
+        var addDislikedTop = function (ticketmasterId) {
             let index = -1;
-            for(i=0; i<$rootScope.otherEventsTop.length; i++){
-                if($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId){
+            for (i = 0; i < $rootScope.otherEventsTop.length; i++) {
+                if ($rootScope.otherEventsTop[i].storedEvent.ticketmasterId === ticketmasterId) {
                     index = i;
                     break;
                 }
             }
-            if(index === -1) return;
+            if (index === -1) return;
             let items = $rootScope.otherEventsTop.splice(index, 1);
             $rootScope.otherEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddDislikedSuccess);
+                .then(onAddDislikedSuccess);
         }
 
-        var onAddLikedSuccess = function(){
+        var onAddLikedSuccess = function () {
             console.log("wydarzenia - polubiono event");
         }
 
         $scope.addLiked = addLiked;
 
-        var addDisliked = function(ticketmasterId){
+        var addDisliked = function (ticketmasterId) {
             let index = -1;
-            for(i=0; i<$rootScope.otherEventsWall.length; i++){
-                if($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId){
+            for (i = 0; i < $rootScope.otherEventsWall.length; i++) {
+                if ($rootScope.otherEventsWall[i].storedEvent.ticketmasterId === ticketmasterId) {
                     index = i;
                     break;
                 }
             }
-            if(index === -1) return;
+            if (index === -1) return;
             let items = $rootScope.otherEventsWall.splice(index, 1);
             $rootScope.otherEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddDislikedSuccess);
+                .then(onAddDislikedSuccess);
         }
 
-        var onAddDislikedSuccess = function(){
+        var onAddDislikedSuccess = function () {
             console.log("wydarzenia - znielubiono event");
         }
 
         $scope.addDisliked = addDisliked;
 
-        var addToWallFromDisliked = function(index){
+        var addToWallFromDisliked = function (index) {
             let items = $rootScope.otherEventsDisliked.splice(index, 1);
             $rootScope.otherEventsWall.push(items[0]);
             console.log("wall item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddToWallFromDisliked);
+                .then(onAddToWallFromDisliked);
         }
 
-        var onAddToWallFromDisliked = function(){
+        var onAddToWallFromDisliked = function () {
             console.log("wydarzenia - odnielubiono event");
         }
 
         $scope.addToWallFromDisliked = addToWallFromDisliked;
 
-        var addToWallFromLiked = function(index){
+        var addToWallFromLiked = function (index) {
             let items = $rootScope.otherEventsLiked.splice(index, 1);
             $rootScope.otherEventsWall.push(items[0]);
             console.log("wall item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
             var data = "";
             var config = {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json;charset=utf-8;'
                 }
             }
             $http.put(url, data, config)
-            .then(onAddToWallFromLiked);
+                .then(onAddToWallFromLiked);
         }
 
-        var onAddToWallFromLiked = function(){
+        var onAddToWallFromLiked = function () {
             console.log("wydarzenia - odnielubiono event");
         }
 
