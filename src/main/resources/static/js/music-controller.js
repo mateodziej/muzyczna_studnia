@@ -7,7 +7,24 @@
         $rootScope.subpage = 0;
 
         var onStart = function () {
-            $timeout(getEventsOnStart, 3000);
+            let delay = 1500;
+            setupLoader(delay);
+            $timeout(getEventsOnStart, delay);
+        }
+
+        var setupLoader = function(delay){
+            if($rootScope.musicDirty === true){
+                enableLoader();
+                $timeout(disableLoader, delay);
+            }
+        }
+
+        var enableLoader = function(){
+            $scope.loader = true;
+        }
+
+        var disableLoader = function(){
+            $scope.loader = false;
         }
 
         var getEventsOnStart = function () {
