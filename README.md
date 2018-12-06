@@ -33,7 +33,7 @@ Back-end:
 
 ## Instrukcja instalacji
 
-> Kolejne wersje aplikacji są budowane i wdrażane za pomocą Travis CI na platformę Packageclodud.
+> Kolejne wersje aplikacji są budowane i wdrażane za pomocą Travis CI na platformę Packagecloud.
 
 1. Należy pobrać aktualną wersję wchodząc pod adres:
 ```sh
