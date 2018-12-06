@@ -134,13 +134,13 @@
 
 	<distributionManagement>
 		<repository>
-			<id>packagecloud-travis</id>
+			<id>packagecloud-mateodziej</id>
 			<url>
 				packagecloud+https://packagecloud.io/mateodziej/muzyczna-studnia
 			</url>
 		</repository>
 		<snapshotRepository>
-			<id>packagecloud-travis</id>
+			<id>packagecloud-mateodziej</id>
 			<url>
 				packagecloud+https://packagecloud.io/mateodziej/muzyczna-studnia
 			</url>
