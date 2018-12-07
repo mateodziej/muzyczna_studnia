@@ -174,6 +174,7 @@
             $rootScope.musicEventsLiked.push(items[0]);
             console.log("liked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/liked/" + items[0].storedEvent.ticketmasterId;
+            console.log("addLikedTop() -> url : " + url);
             var data = "";
             var config = {
                 headers: {
@@ -226,6 +227,7 @@
             $rootScope.musicEventsDisliked.push(items[0]);
             console.log("disliked item " + JSON.stringify(items[0]));
             let url = "http://localhost:8080/api/events/disliked/" + items[0].storedEvent.ticketmasterId;
+            console.log("addDisikedTop() -> url : " + url);
             var data = "";
             var config = {
                 headers: {

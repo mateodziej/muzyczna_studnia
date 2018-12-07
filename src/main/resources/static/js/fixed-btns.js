@@ -1,6 +1,7 @@
 (function () {
     $(document).ready(function () {
         $(window).scroll(updateBtns);
+        updateBtns();
 
         $('body').on('click', '#wall-f-btn', function () {
             console.log("wall-f-btn click()");

@@ -90,4 +90,8 @@ public class UserEvent {
         result = 31 * result + (storedEvent != null ? storedEvent.hashCode() : 0);
         return result;
     }
+    @Override
+    public String toString(){
+        return "UserEvent -> username : " + this.user.getUsername() + " ticketmasterId : " + this.storedEvent.getTicketmasterId() + " status : " + this.status.name();
+    }
 }

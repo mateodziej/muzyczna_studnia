@@ -5,7 +5,7 @@
 
 	<groupId>pl.edu.wat.wcy.ai.i5b1n1.malec_otomanski</groupId>
 	<artifactId>muzyczna_studnia</artifactId>
-	<version>1.6</version>
+	<version>1.8.8-MySQL-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>muzyczna_studnia</name>
@@ -117,6 +117,30 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jasig.maven</groupId>
+				<artifactId>sass-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>update-stylesheets</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resources>
+						<resource>
+							<!-- Set source and destination dirs -->
+							<source>
+								<directory>${project.basedir}/src/main/resources/static/sass</directory>
+							</source>
+							<destination>${project.basedir}/src/main/resources/static/css</destination>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

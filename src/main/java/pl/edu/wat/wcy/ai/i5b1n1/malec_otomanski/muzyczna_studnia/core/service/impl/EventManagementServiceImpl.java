@@ -51,16 +51,21 @@ public class EventManagementServiceImpl implements EventManagementService{
     public void updateUsersEventStatus(String username,
                                        String ticketmasterId,
                                        UserEvent.Status status) {
+        logger.debug("updateUsersEventStatus()");
         userRepository.findByUsername(username)
                 .ifPresent(user -> {
+                    logger.debug("updateUsersEventStatus() user present -> username : " + username);
                     eventRepository.findByTicketmasterId(ticketmasterId)
                             .ifPresent(storedEvent -> {
-                                userEventRepository.findByUserAndStoredEvent(user, storedEvent)
-                                        .ifPresent(userEvent -> {
-                                            logger.debug("event and user present");
+                                logger.debug("updateUsersEventStatus() event present ticketmasterId : " + storedEvent.getTicketmasterId());
+                                Optional<UserEvent> dbUserEvent = userEventRepository.findByUserAndStoredEvent(user, storedEvent);
+                                //TODO: dokonczyc dodawanie eventu z topki (nie ma typu i keyworda)
+                                //if(!dbUserEvent.isPresent()) dbUserEvent = Optional.of(new UserEvent(user, storedEvent, type, UserEvent.Status.WALL, keyword));
+                                        dbUserEvent.ifPresent(userEvent -> {
+                                            logger.debug("updateUsersEventStatus() before update userEvent : " + userEvent.toString());
                                             userEvent.setStatus(status);
                                             userEventRepository.save(userEvent);
-
+                                            logger.debug("updateUsersEventStatus() after update userEvent : " + userEvent.toString());
                                         });
                             });
                 });

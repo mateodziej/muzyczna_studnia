@@ -244,7 +244,7 @@
             let items = $rootScope.otherEventsDisliked.splice(index, 1);
             $rootScope.otherEventsWall.push(items[0]);
             console.log("wall item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
+            let url = "http://localhost:8080/api/events/wall/" + items[0].storedEvent.ticketmasterId;
             var data = "";
             var config = {
                 headers: {
@@ -262,10 +262,12 @@
         $scope.addToWallFromDisliked = addToWallFromDisliked;
 
         var addToWallFromLiked = function (index) {
+            console.log("addToWallFromLiked()");
             let items = $rootScope.otherEventsLiked.splice(index, 1);
             $rootScope.otherEventsWall.push(items[0]);
-            console.log("wall item " + JSON.stringify(items[0]));
-            let url = "http://localhost:8080/api/events/wall/" + items[0].ticketmasterId;
+            console.log("addToWallFromLiked() -> item : " + JSON.stringify(items[0]));
+            let url = "http://localhost:8080/api/events/wall/" + items[0].storedEvent.ticketmasterId;
+            console.log("addToWallFromLiked() -> url : " + url);
             var data = "";
             var config = {
                 headers: {
